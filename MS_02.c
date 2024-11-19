@@ -1,8 +1,8 @@
 #include "pico/stdlib.h"
 // #include "infrared_sensor.c"
 #include "Led/LED.c"
-
 #include "ultraSonic/ultrasonic_sensor.c"
+#include "motor/motor_control.c"
 #include <stdio.h>
 
 // Define the default pin for the infrared sensor
@@ -14,36 +14,26 @@
 int main()
 {
     stdio_init_all();
-    setup_ultrasonic();
-    pico_led_init(20);	
-    
-        while (true)
-        {
-            send_trigger_pulse();
+    // setup_ultrasonic();
+    // pico_led_init(20);
+    motor_init();
+    while (true)
+    {
 
-            uint32_t echo_time = measure_echo_time();
-            float distance = calculate_distance(echo_time);
-            printf("Distance: %.2f cm\n", distance);
+        // send_trigger_pulse();
 
-            if(distance < 4)
-            {
-                pico_set_led(20,true);
-                // Do something when the sensor is triggered
-                printf("Object detected with ultrasonic!\n");
-            }
-            else
-            {
-                                pico_set_led(20,false);
+        // uint32_t echo_time = measure_echo_time();
+        // float distance = calculate_distance(echo_time);
+        // printf("Distance: %.2f cm\n", distance);
 
-                // Do something else when the sensor is not triggered
-                printf("No object detected with ultrasonic.\n");
+        motor_control(100, true);
 
-            }
+        // Do something else when the sensor is not triggered
+        printf("No object detected with ultrasonic.\n");
+        sleep_ms(100); // Wait for a short delay for debouncing
+    }
 
-            sleep_ms(100); // Wait for a short delay for debouncing
-        }
-        return 0;
-    
+    return 0;
 }
 
 // int main()
