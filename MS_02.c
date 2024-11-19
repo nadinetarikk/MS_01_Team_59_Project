@@ -1,5 +1,6 @@
 #include "pico/stdlib.h"
-#include "infrared_sensor.h"
+#include "infrared_sensor.c"
+#include <stdio.h>
 
 // Define the default pin for the infrared sensor
 #ifndef IR_SENSOR_PIN
