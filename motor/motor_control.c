@@ -1,57 +1,96 @@
-// motor_control.c
 #include "motor_control.h"
-// #include <pico/hardware/pwm.h>
 
-// Function to initialize GPIO and PWM
-void motor_init()
-{
-    // Set direction pins as output
-    gpio_init(MOTOR_DIR_PIN1);
-    gpio_set_dir(MOTOR_DIR_PIN1, GPIO_OUT);
-    gpio_init(MOTOR_DIR_PIN2);
-    gpio_set_dir(MOTOR_DIR_PIN2, GPIO_OUT);
+// Motor initialization function
+void motor_init(void) {
+    // Initialize GPIO pins for motor direction control
+    gpio_init(FRONT_LEFT_DIR_PIN1);
+    gpio_set_dir(FRONT_LEFT_DIR_PIN1, GPIO_OUT);
+    gpio_init(FRONT_LEFT_DIR_PIN2);
+    gpio_set_dir(FRONT_LEFT_DIR_PIN2, GPIO_OUT);
 
-    // // Set PWM function for speed control
-    // gpio_set_function(MOTOR_PWM_PIN, GPIO_FUNC_PWM);
+    gpio_init(BACK_LEFT_DIR_PIN1);
+    gpio_set_dir(BACK_LEFT_DIR_PIN1, GPIO_OUT);
+    gpio_init(BACK_LEFT_DIR_PIN2);
+    gpio_set_dir(BACK_LEFT_DIR_PIN2, GPIO_OUT);
 
-    // // Get PWM slice number for GPIO 8
-    // uint32_t slice_num = pwm_gpio_to_slice_num(MOTOR_PWM_PIN);
+    gpio_init(FRONT_RIGHT_DIR_PIN1);
+    gpio_set_dir(FRONT_RIGHT_DIR_PIN1, GPIO_OUT);
+    gpio_init(FRONT_RIGHT_DIR_PIN2);
+    gpio_set_dir(FRONT_RIGHT_DIR_PIN2, GPIO_OUT);
 
-    // // Set PWM configuration: wrap value and clock divider
-    // pwm_set_wrap(slice_num, 255);    // 8-bit resolution
-    // pwm_set_clkdiv(slice_num, 4.0f); // Set clock divider
-
-    // // Enable PWM output
-    // pwm_set_enabled(slice_num, true);
+    gpio_init(BACK_RIGHT_DIR_PIN1);
+    gpio_set_dir(BACK_RIGHT_DIR_PIN1, GPIO_OUT);
+    gpio_init(BACK_RIGHT_DIR_PIN2);
+    gpio_set_dir(BACK_RIGHT_DIR_PIN2, GPIO_OUT);
 }
 
-void motor_control(uint16_t speed, bool forward)
-{
-    // set speed
-    if (speed > 255)
-    {
-        speed = 255;
+// Function to control the motor direction and speed
+void motor_control(uint16_t speed, bool forward, motor_id_t motor) {
+    uint8_t dir_pin1, dir_pin2;
+
+    // Select the motor based on motor_id
+    switch (motor) {
+        case FRONT_LEFT:
+            dir_pin1 = FRONT_LEFT_DIR_PIN1;
+            dir_pin2 = FRONT_LEFT_DIR_PIN2;
+            break;
+        case BACK_LEFT:
+            dir_pin1 = BACK_LEFT_DIR_PIN1;
+            dir_pin2 = BACK_LEFT_DIR_PIN2;
+            break;
+        case FRONT_RIGHT:
+            dir_pin1 = FRONT_RIGHT_DIR_PIN1;
+            dir_pin2 = FRONT_RIGHT_DIR_PIN2;
+            break;
+        case BACK_RIGHT:
+            dir_pin1 = BACK_RIGHT_DIR_PIN1;
+            dir_pin2 = BACK_RIGHT_DIR_PIN2;
+            break;
+        default:
+            return;  // Invalid motor_id
     }
 
-    // Set Motor Direction
-    if (forward)
-    {
-        gpio_put(MOTOR_DIR_PIN1, 1);
-        gpio_put(MOTOR_DIR_PIN2, 0);
-    }
-    else
-    {
-        gpio_put(MOTOR_DIR_PIN1, 0);
-        gpio_put(MOTOR_DIR_PIN2, 1);
+    // Set motor direction
+    if (forward) {
+        gpio_put(dir_pin1, 1);  // Set direction forward
+        gpio_put(dir_pin2, 0);
+    } else {
+        gpio_put(dir_pin1, 0);  // Set direction reverse
+        gpio_put(dir_pin2, 1);
     }
 
-    // Seting PWM duty cycle to control speed
-    // pwm_set_gpio_level(MOTOR_PWM_PIN, speed);
+    // PWM or speed control logic can be implemented here if needed.
+    // Since PWM pin is removed, speed control would need to be done
+    // via another mechanism if necessary (e.g., via H-bridge or other hardware).
 }
 
-void motor_stop()
-{
-    gpio_put(MOTOR_DIR_PIN1, 0);
-    gpio_put(MOTOR_DIR_PIN2, 0);
-    // pwm_set_gpio_level(MOTOR_PWM_PIN, 0);
+// Function to stop the motor
+void motor_stop(motor_id_t motor) {
+    uint8_t dir_pin1, dir_pin2;
+
+    // Select the motor based on motor_id
+    switch (motor) {
+        case FRONT_LEFT:
+            dir_pin1 = FRONT_LEFT_DIR_PIN1;
+            dir_pin2 = FRONT_LEFT_DIR_PIN2;
+            break;
+        case BACK_LEFT:
+            dir_pin1 = BACK_LEFT_DIR_PIN1;
+            dir_pin2 = BACK_LEFT_DIR_PIN2;
+            break;
+        case FRONT_RIGHT:
+            dir_pin1 = FRONT_RIGHT_DIR_PIN1;
+            dir_pin2 = FRONT_RIGHT_DIR_PIN2;
+            break;
+        case BACK_RIGHT:
+            dir_pin1 = BACK_RIGHT_DIR_PIN1;
+            dir_pin2 = BACK_RIGHT_DIR_PIN2;
+            break;
+        default:
+            return;  // Invalid motor_id
+    }
+
+    // Set both direction pins to low to stop the motor
+    gpio_put(dir_pin1, 0);
+    gpio_put(dir_pin2, 0);
 }

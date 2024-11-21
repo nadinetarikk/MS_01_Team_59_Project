@@ -16,42 +16,112 @@
 int main()
 {
     stdio_init_all();
-    buzzer_init();
 
-    printf("Starting the buzzer...\n");
+    // Motor control test
+    motor_init();
+
+    // while (true)
+    // {
+    //     // Move Front Left motor forward
+    //     motor_control(100, true, FRONT_LEFT); // Move Front Left motor forward at speed 100
+    //     printf("Front Left motor moving forward.\n");
+    //     sleep_ms(5000); // Wait for 1 second
+
+    //     // Move Front Left motor backward
+    //     motor_control(100, false, FRONT_LEFT); // Move Front Left motor backward at speed 100
+    //     printf("Front Left motor moving backward.\n");
+    //     sleep_ms(5000); // Wait for 1 second
+
+    //     // Move Back Left motor forward
+    //     motor_control(100, true, BACK_LEFT); // Move Back Left motor forward at speed 100
+    //     printf("Back Left motor moving forward.\n");
+    //     sleep_ms(5000); // Wait for 1 second
+
+    //     // Move Back Left motor backward
+    //     motor_control(100, false, BACK_LEFT); // Move Back Left motor backward at speed 100
+    //     printf("Back Left motor moving backward.\n");
+    //     sleep_ms(5000); // Wait for 1 second
+
+    //     // Move Front Right motor forward
+    //     motor_control(100, true, FRONT_RIGHT); // Move Front Right motor forward at speed 100
+    //     printf("Front Right motor moving forward.\n");
+    //     sleep_ms(5000); // Wait for 1 second
+
+    //     // Move Front Right motor backward
+    //     motor_control(100, false, FRONT_RIGHT); // Move Front Right motor backward at speed 100
+    //     printf("Front Right motor moving backward.\n");
+    //     sleep_ms(5000); // Wait for 1 second
+
+    //     // Move Back Right motor forward
+    //     motor_control(100, true, BACK_RIGHT); // Move Back Right motor forward at speed 100
+    //     printf("Back Right motor moving forward.\n");
+    //     sleep_ms(5000); // Wait for 1 second
+
+    //     // Move Back Right motor backward
+    //     motor_control(100, false, BACK_RIGHT); // Move Back Right motor backward at speed 100
+    //     printf("Back Right motor moving backward.\n");
+    //     sleep_ms(5000); // Wait for 1 second
+
+    //     // Stop all motors
+    //     motor_stop(FRONT_LEFT);  // Stop Front Left motor
+    //     motor_stop(BACK_LEFT);   // Stop Back Left motor
+    //     motor_stop(FRONT_RIGHT); // Stop Front Right motor
+    //     motor_stop(BACK_RIGHT);  // Stop Back Right motor
+    //     printf("All motors stopped.\n");
+
+    //     sleep_ms(2000); // Wait for 2 seconds before repeating
+    // }
 
     while (true)
     {
-        printf("Beeping at different frequencies between 1 kHz and 15 kHz...\n");
-
-        // Beep at 1 kHz (1000 Hz)
-        printf("Playing at 1 kHz\n");
-        buzzer_beep(1000, 2000); // 1 kHz for 2 seconds
-        sleep_ms(1000);
-
-        // // Beep at 2 kHz (2000 Hz)
-        // printf("Playing at 2 kHz\n");
-        // buzzer_beep(2000, 2000); // 2 kHz for 2 seconds
-        // sleep_ms(1000);
-
-        // // Beep at 3 kHz (3000 Hz)
-        // printf("Playing at 3 kHz\n");
-        // buzzer_beep(3000, 2000); // 3 kHz for 2 seconds
-        // sleep_ms(1000);
-
-        // // Beep at 4 kHz (4000 Hz)
-        // printf("Playing at 4 kHz\n");
-        // buzzer_beep(4000, 2000); // 4 kHz for 2 seconds
-        // sleep_ms(1000);
-
-        // Beep at 5 kHz (5000 Hz)
-        printf("Playing at 5 kHz\n");
-        buzzer_beep(5000, 2000); // 5 kHz for 2 seconds
-        sleep_ms(1000);
+        motor_control(100, true, FRONT_LEFT);
+        motor_control(100, true, BACK_LEFT);
+        motor_control(100, true, FRONT_RIGHT);
+        motor_control(100, true, BACK_RIGHT);
     }
 
     return 0;
 }
+
+// int main()
+// {
+//     stdio_init_all();
+//     buzzer_init();
+
+//     printf("Starting the buzzer...\n");
+
+//     while (true)
+//     {
+//         printf("Beeping at different frequencies between 1 kHz and 15 kHz...\n");
+
+//         // Beep at 1 kHz (1000 Hz)
+//         printf("Playing at 1 kHz\n");
+//         buzzer_beep(1000, 2000); // 1 kHz for 2 seconds
+//         sleep_ms(1000);
+
+//         // // Beep at 2 kHz (2000 Hz)
+//         // printf("Playing at 2 kHz\n");
+//         // buzzer_beep(2000, 2000); // 2 kHz for 2 seconds
+//         // sleep_ms(1000);
+
+//         // // Beep at 3 kHz (3000 Hz)
+//         // printf("Playing at 3 kHz\n");
+//         // buzzer_beep(3000, 2000); // 3 kHz for 2 seconds
+//         // sleep_ms(1000);
+
+//         // // Beep at 4 kHz (4000 Hz)
+//         // printf("Playing at 4 kHz\n");
+//         // buzzer_beep(4000, 2000); // 4 kHz for 2 seconds
+//         // sleep_ms(1000);
+
+//         // Beep at 5 kHz (5000 Hz)
+//         printf("Playing at 5 kHz\n");
+//         buzzer_beep(5000, 2000); // 5 kHz for 2 seconds
+//         sleep_ms(1000);
+//     }
+
+//     return 0;
+// }
 
 // int main()
 // {

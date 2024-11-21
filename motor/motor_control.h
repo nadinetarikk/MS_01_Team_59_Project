@@ -3,14 +3,30 @@
 
 #include "pico/stdlib.h"
 
-#endif // MOTOR_CONTROL_H
+// Enum for Motor IDs
+typedef enum {
+    FRONT_LEFT = 1,
+    BACK_LEFT,
+    FRONT_RIGHT,
+    BACK_RIGHT
+} motor_id_t;
 
-// GPIO Pins for Motor Control
-#define MOTOR_PWM_PIN 8  // GPIO 8 for PWM (speed control)
-#define MOTOR_DIR_PIN1 6 // GPIO 6 for motor direction
-#define MOTOR_DIR_PIN2 7 // GPIO 7 for motor direction
+// Define GPIO Pins for Motors
+#define FRONT_LEFT_DIR_PIN1 16
+#define FRONT_LEFT_DIR_PIN2 17
+
+#define BACK_LEFT_DIR_PIN1 18
+#define BACK_LEFT_DIR_PIN2 19
+
+#define FRONT_RIGHT_DIR_PIN1 14
+#define FRONT_RIGHT_DIR_PIN2 15
+
+#define BACK_RIGHT_DIR_PIN1 12
+#define BACK_RIGHT_DIR_PIN2 13
 
 // Function Declarations
 void motor_init(void);
-void motor_control(uint16_t speed, bool forward);
-void motor_stop(void);
+void motor_control(uint16_t speed, bool forward, motor_id_t motor);
+void motor_stop(motor_id_t motor);
+
+#endif // MOTOR_CONTROL_H
