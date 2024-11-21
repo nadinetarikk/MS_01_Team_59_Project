@@ -9,8 +9,8 @@ void setup_ldr_gl5528(void)
 {
     // Initialize the ADC and select the input pin for the LDR
     adc_init();
-    adc_gpio_init(LDR_PIN); // Enable the GPIO pin for analog input
-    adc_select_input(2);    // Select ADC input channel 0 (LDR_PIN)
+    adc_gpio_init(LDR_PIN);         // Enable the GPIO pin for analog input
+    adc_select_input(LDR_PIN - 26); // Select ADC input channel 0 (LDR_PIN)
 }
 
 uint16_t read_ldr_gl5528_raw(void)
