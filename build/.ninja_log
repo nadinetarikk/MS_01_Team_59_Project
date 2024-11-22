@@ -77,3 +77,5 @@
 6030	6504	7539140736555596	CMakeFiles/MS_02.dir/C_/Program_Files/Raspberry_Pi/Pico_SDK_v1.5.1/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj	c25ddcb2c9efc611
 329	770	7539192965012592	MS_02.elf	805c30103d50aac4
 6059	6552	7539140737245593	CMakeFiles/MS_02.dir/C_/Program_Files/Raspberry_Pi/Pico_SDK_v1.5.1/pico-sdk/src/rp2_common/hardware_adc/adc.c.obj	60239e00a802eb6d
+60	761	7540075352859325	CMakeFiles/MS_02.dir/MS_02.c.obj	e1f50998c150fcee
+762	1887	7540075359757806	MS_02.elf	805c30103d50aac4

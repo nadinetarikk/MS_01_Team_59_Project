@@ -4,7 +4,8 @@
 #include "pico/stdlib.h"
 
 // Enum for Motor IDs
-typedef enum {
+typedef enum
+{
     FRONT_LEFT = 1,
     BACK_LEFT,
     FRONT_RIGHT,
@@ -18,11 +19,11 @@ typedef enum {
 #define BACK_LEFT_DIR_PIN1 18
 #define BACK_LEFT_DIR_PIN2 19
 
-#define FRONT_RIGHT_DIR_PIN1 14
-#define FRONT_RIGHT_DIR_PIN2 15
+#define FRONT_RIGHT_DIR_PIN1 0
+#define FRONT_RIGHT_DIR_PIN2 1
 
-#define BACK_RIGHT_DIR_PIN1 12
-#define BACK_RIGHT_DIR_PIN2 13
+#define BACK_RIGHT_DIR_PIN1 2
+#define BACK_RIGHT_DIR_PIN2 3
 
 // Function Declarations
 void motor_init(void);
